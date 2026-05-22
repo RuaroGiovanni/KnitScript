@@ -1,0 +1,4 @@
+{
+  "name": "Knitting Script Generator",
+  "description": "A tool to generate bespoke knitting machine scripts from client body measurements based on structural rules."
+}
