@@ -2,7 +2,7 @@
 FROM node:20-slim
 
 # Set working directory inside the container
-WORKDIR /usr/src/app
+WORKDIR /app
 
 # Copy package configurations
 COPY package*.json ./
@@ -11,7 +11,7 @@ COPY package*.json ./
 RUN npm install --omit=dev
 
 # Copy server code
-COPY server.js ./
+COPY . .
 
 # Set environment to production
 ENV NODE_ENV=production
@@ -20,4 +20,4 @@ ENV NODE_ENV=production
 EXPOSE 8080
 
 # Command to run the application
-CMD [ "node", "server.js" ]
+CMD ["npm", "start"]
