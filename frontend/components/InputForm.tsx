@@ -7,7 +7,7 @@ interface InputFormProps {
 }
 
 const defaultMeasurements: Measurements = {
-  T: 52, S: 40.5, C: 20, P: 11, M: 17.5, LC: 65, G: 23.5, SC: 7.7, LM: 54
+  T: 52, S: 40.5, C: 20, P: 11, M: 17.5, LC: 65, G: 23.5, SC: 7.7, LM: 54, TM: 5
 };
 
 const defaultGauges: Gauges = {
@@ -97,6 +97,7 @@ export const InputForm: React.FC<InputFormProps> = ({ onSubmit }) => {
               { key: 'C', label: 'Coppino' },
               { key: 'P', label: 'Polso' },
               { key: 'M', label: 'Muscolo' },
+              { key: 'TM', label: 'Testa della Manica' },
             ].map(field => (
               <div key={field.key} className="flex items-center justify-between">
                 <label className="text-sm text-slate-700">{field.label}</label>

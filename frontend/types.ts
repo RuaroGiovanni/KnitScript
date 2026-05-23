@@ -8,6 +8,7 @@ export interface Measurements {
   G: number; // Armhole depth
   SC: number; // Neckline depth
   LM: number; // Sleeve length
+  TM: number; // Sleeve cap height
 }
 
 export interface Gauges {
