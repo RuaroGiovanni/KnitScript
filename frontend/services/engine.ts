@@ -69,34 +69,34 @@ export function generateBackPanel(m: Measurements, g: Gauges): PanelScript {
   const fianco_rows = LC_r - shoulder_rows - G_r;
 
   // Build Script bottom-up
-  instructions.push({ action: 'AZZERO OROLOGIO', details: 'Reset counter', runningTotal: `${T_n}-${T_n}`, rowCounter: 0 });
-  instructions.push({ action: 'Cast-on', details: 'RETE II / TUB. / COSTA 1x1', runningTotal: `${T_n}-${T_n}`, rowCounter: 0 });
+  instructions.push({ action: 'AZZERO OROLOGIO', details: 'Azzera contatore', runningTotal: `${T_n}-${T_n}`, rowCounter: 0 });
+  instructions.push({ action: 'Avvio', details: 'RETE II / TUB. / COSTA 1x1', runningTotal: `${T_n}-${T_n}`, rowCounter: 0 });
   
   // Zone A: Fianco
   currentRow += fianco_rows;
-  instructions.push({ action: 'DRITTO', details: `Work ${fianco_rows} straight rows`, runningTotal: `${T_n}-${T_n}`, rowCounter: currentRow });
+  instructions.push({ action: 'DRITTO', details: `Lavora ${fianco_rows} ranghi a dritto`, runningTotal: `${T_n}-${T_n}`, rowCounter: currentRow });
 
   // Zone B1: Armhole decreases
   if (b1_solution && (b1_solution.nA > 0 || b1_solution.nB > 0)) {
     currentRow += b1_rows;
-    const details = `${b1_solution.nA} CALI 2x2 + ${b1_solution.nB} CALI 2x4 → (${b1_rows} rows, -${armhole_needles} needles/side)`;
-    instructions.push({ action: 'Decrease', details, runningTotal: `${S_n}-${S_n}`, rowCounter: currentRow });
+    const details = `${b1_solution.nA} CALI 2x2 + ${b1_solution.nB} CALI 2x4 → (${b1_rows} ranghi, -${armhole_needles} aghi/lato)`;
+    instructions.push({ action: 'Calo', details, runningTotal: `${S_n}-${S_n}`, rowCounter: currentRow });
   }
 
   // Zone B2: Armhole straight
   if (b2_rows > 0) {
     currentRow += b2_rows;
-    instructions.push({ action: 'DRITTO', details: `Work ${b2_rows} straight rows`, runningTotal: `${S_n}-${S_n}`, rowCounter: currentRow });
+    instructions.push({ action: 'DRITTO', details: `Lavora ${b2_rows} ranghi a dritto`, runningTotal: `${S_n}-${S_n}`, rowCounter: currentRow });
   }
 
   // Zone C: Shoulder
   if (shoulder_needles > 0) {
     currentRow += shoulder_rows;
-    const details = `${shoulder_needles} CALI 2x2 → (${shoulder_rows} rows, -${shoulder_needles} needles/side)`;
-    instructions.push({ action: 'Decrease', details, runningTotal: `${C_n}-${C_n}`, rowCounter: currentRow });
+    const details = `${shoulder_needles} CALI 2x2 → (${shoulder_rows} ranghi, -${shoulder_needles} aghi/lato)`;
+    instructions.push({ action: 'Calo', details, runningTotal: `${C_n}-${C_n}`, rowCounter: currentRow });
   }
 
-  return { name: 'Schiena (Back)', instructions };
+  return { name: 'Schiena', instructions };
 }
 
 export function generateFrontPanel(m: Measurements, g: Gauges): PanelScript {
@@ -129,17 +129,17 @@ export function generateFrontPanel(m: Measurements, g: Gauges): PanelScript {
   const neck_straight_rows = SC_r - neck_dec_rows;
 
   // Build Script
-  instructions.push({ action: 'AZZERO OROLOGIO', details: 'Reset counter', runningTotal: `${T_n}-${T_n}`, rowCounter: 0 });
-  instructions.push({ action: 'Cast-on', details: 'RETE II / TUB. / COSTA 1x1', runningTotal: `${T_n}-${T_n}`, rowCounter: 0 });
+  instructions.push({ action: 'AZZERO OROLOGIO', details: 'Azzera contatore', runningTotal: `${T_n}-${T_n}`, rowCounter: 0 });
+  instructions.push({ action: 'Avvio', details: 'RETE II / TUB. / COSTA 1x1', runningTotal: `${T_n}-${T_n}`, rowCounter: 0 });
   
   // Fianco
   currentRow += fianco_rows;
-  instructions.push({ action: 'DRITTO', details: `Work ${fianco_rows} straight rows`, runningTotal: `${T_n}-${T_n}`, rowCounter: currentRow });
+  instructions.push({ action: 'DRITTO', details: `Lavora ${fianco_rows} ranghi a dritto`, runningTotal: `${T_n}-${T_n}`, rowCounter: currentRow });
 
   // Armhole decreases
   if (b1_solution && (b1_solution.nA > 0 || b1_solution.nB > 0)) {
     currentRow += b1_rows;
-    instructions.push({ action: 'Decrease', details: `${b1_solution.nA} CALI 2x2 + ${b1_solution.nB} CALI 2x4`, runningTotal: `${S_n}-${S_n}`, rowCounter: currentRow });
+    instructions.push({ action: 'Calo', details: `${b1_solution.nA} CALI 2x2 + ${b1_solution.nB} CALI 2x4`, runningTotal: `${S_n}-${S_n}`, rowCounter: currentRow });
   }
 
   // Armhole straight up to neckline start
@@ -148,24 +148,24 @@ export function generateFrontPanel(m: Measurements, g: Gauges): PanelScript {
   
   if (remaining_straight > 0) {
     currentRow += remaining_straight;
-    instructions.push({ action: 'DRITTO', details: `Work ${remaining_straight} straight rows to neckline`, runningTotal: `${S_n}-${S_n}`, rowCounter: currentRow });
+    instructions.push({ action: 'DRITTO', details: `Lavora ${remaining_straight} ranghi a dritto fino allo scollo`, runningTotal: `${S_n}-${S_n}`, rowCounter: currentRow });
   }
 
   // Neckline start
-  instructions.push({ action: 'Bind-off', details: `INTRECCIO ${intreccio}-${intreccio} (Central)`, runningTotal: `${S_n - intreccio}-${S_n - intreccio}`, rowCounter: currentRow });
+  instructions.push({ action: 'Intreccio', details: `INTRECCIO ${intreccio}-${intreccio} (Centrale)`, runningTotal: `${S_n - intreccio}-${S_n - intreccio}`, rowCounter: currentRow });
 
   // Neckline decreases (happens concurrently with shoulder, simplified for linear script)
   if (neck_solution && (neck_solution.nA > 0 || neck_solution.nB > 0)) {
       currentRow += neck_dec_rows;
-      instructions.push({ action: 'Decrease', details: `${neck_solution.nA} CALI 2x2 + ${neck_solution.nB} CALI 2x4 (Neckline)`, runningTotal: `${S_n - C_n}-${S_n - C_n}`, rowCounter: currentRow });
+      instructions.push({ action: 'Calo', details: `${neck_solution.nA} CALI 2x2 + ${neck_solution.nB} CALI 2x4 (Scollo)`, runningTotal: `${S_n - C_n}-${S_n - C_n}`, rowCounter: currentRow });
   }
 
   if (neck_straight_rows > 0) {
       currentRow += neck_straight_rows;
-      instructions.push({ action: 'DRITTO', details: `Work ${neck_straight_rows} straight rows`, runningTotal: `${S_n - C_n}-${S_n - C_n}`, rowCounter: currentRow });
+      instructions.push({ action: 'DRITTO', details: `Lavora ${neck_straight_rows} ranghi a dritto`, runningTotal: `${S_n - C_n}-${S_n - C_n}`, rowCounter: currentRow });
   }
 
-  return { name: 'Davanti (Front)', instructions };
+  return { name: 'Davanti', instructions };
 }
 
 export function generateSleevePanel(m: Measurements, g: Gauges): PanelScript {
@@ -196,18 +196,18 @@ export function generateSleevePanel(m: Measurements, g: Gauges): PanelScript {
   const z3_waste = z3_budget - z3_rows;
 
   // Build Script
-  instructions.push({ action: 'AZZERO OROLOGIO', details: 'Reset counter', runningTotal: `${P_n}-${P_n}`, rowCounter: 0 });
-  instructions.push({ action: 'Cast-on', details: 'RETE II / TUB. / COSTA 1x1', runningTotal: `${P_n}-${P_n}`, rowCounter: 0 });
+  instructions.push({ action: 'AZZERO OROLOGIO', details: 'Azzera contatore', runningTotal: `${P_n}-${P_n}`, rowCounter: 0 });
+  instructions.push({ action: 'Avvio', details: 'RETE II / TUB. / COSTA 1x1', runningTotal: `${P_n}-${P_n}`, rowCounter: 0 });
 
   // Increases
   if (z1_solution && (z1_solution.nA > 0 || z1_solution.nB > 0)) {
     currentRow += z1_rows;
-    instructions.push({ action: 'Increase', details: `${z1_solution.nA} AUM. 1x6 + ${z1_solution.nB} AUM. 1x8`, runningTotal: `${M_n}-${M_n}`, rowCounter: currentRow });
+    instructions.push({ action: 'Aumento', details: `${z1_solution.nA} AUM. 1x6 + ${z1_solution.nB} AUM. 1x8`, runningTotal: `${M_n}-${M_n}`, rowCounter: currentRow });
   }
 
   // Straight
   currentRow += z2_rows;
-  instructions.push({ action: 'DRITTO', details: `Work ${z2_rows} straight rows`, runningTotal: `${M_n}-${M_n}`, rowCounter: currentRow });
+  instructions.push({ action: 'DRITTO', details: `Lavora ${z2_rows} ranghi a dritto`, runningTotal: `${M_n}-${M_n}`, rowCounter: currentRow });
 
   // Decreases
   if (z3_solution) {
@@ -220,15 +220,15 @@ export function generateSleevePanel(m: Measurements, g: Gauges): PanelScript {
     if (z3_solution.nB > 0) det += `+ ${z3_solution.nB} CALI 2x4 `;
     if (nA_close > 0) det += `+ ${nA_close} CALI 2x2`;
     
-    instructions.push({ action: 'Decrease', details: det.trim().replace(/^\+ /, ''), runningTotal: `${testa_n}-${testa_n}`, rowCounter: currentRow });
+    instructions.push({ action: 'Calo', details: det.trim().replace(/^\+ /, ''), runningTotal: `${testa_n}-${testa_n}`, rowCounter: currentRow });
   }
 
   if (z3_waste > 0) {
       currentRow += z3_waste;
-      instructions.push({ action: 'DRITTO', details: `Work ${z3_waste} straight rows to finish`, runningTotal: `${testa_n}-${testa_n}`, rowCounter: currentRow });
+      instructions.push({ action: 'DRITTO', details: `Lavora ${z3_waste} ranghi a dritto per terminare`, runningTotal: `${testa_n}-${testa_n}`, rowCounter: currentRow });
   }
 
-  return { name: 'Manica (Sleeve) x2', instructions };
+  return { name: 'Manica x2', instructions };
 }
 
 export function generateNecklineBorder(m: Measurements, g: Gauges): PanelScript {
@@ -239,10 +239,10 @@ export function generateNecklineBorder(m: Measurements, g: Gauges): PanelScript 
     const total_border_needles = Math.round(C_n * 3); 
     
     return {
-        name: 'Bordo Girocollo (Neckline Border)',
+        name: 'Bordo Girocollo',
         instructions: [
-            { action: 'Cast-on', details: 'RETE II / TUB. 14 (2)', runningTotal: `${total_border_needles}-${total_border_needles}`, rowCounter: 2 },
-            { action: 'Rib', details: 'COSTA 1x1 div. 14', runningTotal: `${total_border_needles}-${total_border_needles}`, rowCounter: 30 }
+            { action: 'Avvio', details: 'RETE II / TUB. 14 (2)', runningTotal: `${total_border_needles}-${total_border_needles}`, rowCounter: 2 },
+            { action: 'Costa', details: 'COSTA 1x1 div. 14', runningTotal: `${total_border_needles}-${total_border_needles}`, rowCounter: 30 }
         ]
     }
 }

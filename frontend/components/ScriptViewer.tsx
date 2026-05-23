@@ -18,10 +18,10 @@ export const ScriptViewer: React.FC<ScriptViewerProps> = ({ script, onSave }) =>
         <table className="w-full text-sm text-left">
           <thead className="text-xs text-slate-500 uppercase bg-slate-50 border-b border-slate-200">
             <tr>
-              <th className="px-4 py-3 font-medium">Action</th>
-              <th className="px-4 py-3 font-medium">Details</th>
-              <th className="px-4 py-3 font-medium text-right">Needles</th>
-              <th className="px-4 py-3 font-medium text-right">Row</th>
+              <th className="px-4 py-3 font-medium">Azione</th>
+              <th className="px-4 py-3 font-medium">Dettagli</th>
+              <th className="px-4 py-3 font-medium text-right">Aghi</th>
+              <th className="px-4 py-3 font-medium text-right">Colpi</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-slate-100">
@@ -54,10 +54,10 @@ export const ScriptViewer: React.FC<ScriptViewerProps> = ({ script, onSave }) =>
         </div>
         <div className="flex gap-3 w-full md:w-auto">
           <button onClick={() => window.print()} className="flex-1 md:flex-none px-4 py-2 bg-white border border-slate-300 text-slate-700 rounded-lg hover:bg-slate-50 transition-colors flex items-center justify-center gap-2 text-sm font-medium">
-            <Printer className="w-4 h-4" /> Print
+            <Printer className="w-4 h-4" /> Stampa
           </button>
           <button onClick={() => onSave(script)} className="flex-1 md:flex-none px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors flex items-center justify-center gap-2 text-sm font-medium shadow-sm">
-            <Save className="w-4 h-4" /> Save to Archive
+            <Save className="w-4 h-4" /> Salva nell'Archivio
           </button>
         </div>
       </div>

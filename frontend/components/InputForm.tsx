@@ -27,11 +27,11 @@ export const InputForm: React.FC<InputFormProps> = ({ onSubmit }) => {
 
   const validate = (): boolean => {
     if (m.T <= m.S || m.S <= m.C) {
-      setError("Chest must be > Shoulders > Neck");
+      setError("Il torace deve essere > delle spalle > del collo");
       return false;
     }
     if (m.P >= m.M) {
-      setError("Wrist must be < Upper arm");
+      setError("Il polso deve essere < del muscolo");
       return false;
     }
     setError(null);
@@ -51,15 +51,15 @@ export const InputForm: React.FC<InputFormProps> = ({ onSubmit }) => {
       {/* Meta Info */}
       <section>
         <h3 className="text-lg font-semibold text-slate-800 mb-4 flex items-center gap-2">
-          <User className="w-5 h-5 text-blue-600" /> Client & Yarn
+          <User className="w-5 h-5 text-blue-600" /> Cliente e Filato
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium text-slate-700 mb-1">Client Name</label>
+            <label className="block text-sm font-medium text-slate-700 mb-1">Nome Cliente</label>
             <input type="text" value={clientName} onChange={e => setClientName(e.target.value)} className="w-full p-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-blue-500 outline-none" required />
           </div>
           <div>
-            <label className="block text-sm font-medium text-slate-700 mb-1">Yarn Specification</label>
+            <label className="block text-sm font-medium text-slate-700 mb-1">Specifiche Filato</label>
             <input type="text" value={yarnSpec} onChange={e => setYarnSpec(e.target.value)} className="w-full p-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-blue-500 outline-none" required />
           </div>
         </div>
@@ -68,15 +68,15 @@ export const InputForm: React.FC<InputFormProps> = ({ onSubmit }) => {
       {/* Gauges */}
       <section>
         <h3 className="text-lg font-semibold text-slate-800 mb-4 flex items-center gap-2">
-          <Settings2 className="w-5 h-5 text-blue-600" /> Calibration (Gauge)
+          <Settings2 className="w-5 h-5 text-blue-600" /> Calibrazione (Campione)
         </h3>
         <div className="grid grid-cols-2 gap-4 bg-slate-50 p-4 rounded-lg border border-slate-100">
           <div>
-            <label className="block text-sm font-medium text-slate-700 mb-1">Stitches / cm (X)</label>
+            <label className="block text-sm font-medium text-slate-700 mb-1">Punti / cm (X)</label>
             <input type="number" step="0.001" value={g.x} onChange={e => handleNumChange(setG, 'x', e.target.value)} className="w-full p-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-blue-500 outline-none" required />
           </div>
           <div>
-            <label className="block text-sm font-medium text-slate-700 mb-1">Rows / cm (Y)</label>
+            <label className="block text-sm font-medium text-slate-700 mb-1">Passaggi / cm (Y)</label>
             <input type="number" step="0.001" value={g.y} onChange={e => handleNumChange(setG, 'y', e.target.value)} className="w-full p-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-blue-500 outline-none" required />
           </div>
         </div>
@@ -85,18 +85,18 @@ export const InputForm: React.FC<InputFormProps> = ({ onSubmit }) => {
       {/* Measurements */}
       <section>
         <h3 className="text-lg font-semibold text-slate-800 mb-4 flex items-center gap-2">
-          <Ruler className="w-5 h-5 text-blue-600" /> Measurements (cm)
+          <Ruler className="w-5 h-5 text-blue-600" /> Misure (cm)
         </h3>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4">
           <div className="space-y-4">
-            <h4 className="text-sm font-semibold text-slate-500 uppercase tracking-wider border-b pb-1">Widths (X-Axis)</h4>
+            <h4 className="text-sm font-semibold text-slate-500 uppercase tracking-wider border-b pb-1">Larghezze (Asse X)</h4>
             {[
-              { key: 'T', label: 'Chest (Torace)' },
-              { key: 'S', label: 'Shoulders (Spalle)' },
-              { key: 'C', label: 'Neck (Coppino)' },
-              { key: 'P', label: 'Wrist (Polso)' },
-              { key: 'M', label: 'Upper Arm (Muscolo)' },
+              { key: 'T', label: 'Torace' },
+              { key: 'S', label: 'Spalle' },
+              { key: 'C', label: 'Coppino' },
+              { key: 'P', label: 'Polso' },
+              { key: 'M', label: 'Muscolo' },
             ].map(field => (
               <div key={field.key} className="flex items-center justify-between">
                 <label className="text-sm text-slate-700">{field.label}</label>
@@ -106,12 +106,12 @@ export const InputForm: React.FC<InputFormProps> = ({ onSubmit }) => {
           </div>
           
           <div className="space-y-4">
-            <h4 className="text-sm font-semibold text-slate-500 uppercase tracking-wider border-b pb-1">Lengths (Y-Axis)</h4>
+            <h4 className="text-sm font-semibold text-slate-500 uppercase tracking-wider border-b pb-1">Lunghezze (Asse Y)</h4>
             {[
-              { key: 'LC', label: 'Body Length (Lunghezza Corpo)' },
-              { key: 'G', label: 'Armhole Depth (Giromanica)' },
-              { key: 'SC', label: 'Neckline Depth (Scollo)' },
-              { key: 'LM', label: 'Sleeve Length (Lunghezza Manica)' },
+              { key: 'LC', label: 'Lunghezza Corpo' },
+              { key: 'G', label: 'Profondità Giromanica' },
+              { key: 'SC', label: 'Profondità Scollo' },
+              { key: 'LM', label: 'Lunghezza Manica' },
             ].map(field => (
               <div key={field.key} className="flex items-center justify-between">
                 <label className="text-sm text-slate-700">{field.label}</label>
@@ -129,7 +129,7 @@ export const InputForm: React.FC<InputFormProps> = ({ onSubmit }) => {
       )}
 
       <button type="submit" className="w-full py-3 px-4 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg shadow-sm transition-colors flex justify-center items-center gap-2">
-        <Scissors className="w-5 h-5" /> Generate Knitting Script
+        <Scissors className="w-5 h-5" /> Genera Script
       </button>
     </form>
   );

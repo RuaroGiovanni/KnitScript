@@ -20,13 +20,13 @@ export const ArchiveView: React.FC<ArchiveViewProps> = ({ records, onLoadRecord 
     <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
       <div className="p-4 border-b border-slate-200 bg-slate-50 flex flex-col sm:flex-row justify-between items-center gap-4">
         <h2 className="text-lg font-bold text-slate-800 flex items-center gap-2">
-          <FileText className="w-5 h-5 text-blue-600" /> Historical Archive
+          <FileText className="w-5 h-5 text-blue-600" /> Archivio Storico
         </h2>
         <div className="relative w-full sm:w-64">
           <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
           <input 
             type="text" 
-            placeholder="Search client, yarn, ID..." 
+            placeholder="Cerca cliente, filato, ID..." 
             value={searchTerm}
             onChange={e => setSearchTerm(e.target.value)}
             className="w-full pl-9 pr-4 py-2 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
@@ -36,17 +36,17 @@ export const ArchiveView: React.FC<ArchiveViewProps> = ({ records, onLoadRecord 
 
       {filtered.length === 0 ? (
         <div className="p-8 text-center text-slate-500">
-          No records found.
+          Nessun record trovato.
         </div>
       ) : (
         <div className="overflow-x-auto">
           <table className="w-full text-sm text-left">
             <thead className="text-xs text-slate-500 uppercase bg-white border-b border-slate-200">
               <tr>
-                <th className="px-6 py-4 font-medium">ID / Date</th>
-                <th className="px-6 py-4 font-medium">Client</th>
-                <th className="px-6 py-4 font-medium">Yarn</th>
-                <th className="px-6 py-4 font-medium text-right">Action</th>
+                <th className="px-6 py-4 font-medium">ID / Data</th>
+                <th className="px-6 py-4 font-medium">Cliente</th>
+                <th className="px-6 py-4 font-medium">Filato</th>
+                <th className="px-6 py-4 font-medium text-right">Azione</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100">
@@ -71,7 +71,7 @@ export const ArchiveView: React.FC<ArchiveViewProps> = ({ records, onLoadRecord 
                       onClick={() => onLoadRecord(record)}
                       className="text-blue-600 hover:text-blue-800 font-medium text-sm px-3 py-1.5 rounded hover:bg-blue-50 transition-colors"
                     >
-                      View Script
+                      Visualizza Script
                     </button>
                   </td>
                 </tr>

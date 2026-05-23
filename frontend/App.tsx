@@ -36,7 +36,7 @@ export default function App() {
     const updatedArchive = [newRecord, ...archive];
     setArchive(updatedArchive);
     localStorage.setItem('knitting_archive', JSON.stringify(updatedArchive));
-    alert('Script saved to archive!');
+    alert('Script salvato nell\'archivio!');
   };
 
   const handleLoadFromArchive = (record: ArchiveRecord) => {
@@ -58,13 +58,13 @@ export default function App() {
               onClick={() => setView('input')}
               className={`px-4 py-1.5 text-sm font-medium rounded-md transition-all flex items-center gap-2 ${view === 'input' ? 'bg-white text-blue-700 shadow-sm' : 'text-slate-600 hover:text-slate-900'}`}
             >
-              <PlusCircle className="w-4 h-4" /> New
+              <PlusCircle className="w-4 h-4" /> Nuovo
             </button>
             <button 
               onClick={() => setView('archive')}
               className={`px-4 py-1.5 text-sm font-medium rounded-md transition-all flex items-center gap-2 ${view === 'archive' ? 'bg-white text-blue-700 shadow-sm' : 'text-slate-600 hover:text-slate-900'}`}
             >
-              <Archive className="w-4 h-4" /> Archive
+              <Archive className="w-4 h-4" /> Archivio
             </button>
           </nav>
         </div>
@@ -75,8 +75,8 @@ export default function App() {
         {view === 'input' && (
           <div className="max-w-3xl mx-auto">
             <div className="mb-6">
-              <h2 className="text-2xl font-bold text-slate-900">New Script</h2>
-              <p className="text-slate-500">Enter client measurements to generate a bespoke knitting pattern.</p>
+              <h2 className="text-2xl font-bold text-slate-900">Nuovo Script</h2>
+              <p className="text-slate-500">Inserisci le misure del cliente per generare un modello di maglieria su misura.</p>
             </div>
             <InputForm onSubmit={handleGenerate} />
           </div>
@@ -86,11 +86,11 @@ export default function App() {
           <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
              <div className="mb-6 flex items-center justify-between">
               <div>
-                <h2 className="text-2xl font-bold text-slate-900">Generated Script</h2>
-                <p className="text-slate-500">Ready for the knitting machine.</p>
+                <h2 className="text-2xl font-bold text-slate-900">Script Generato</h2>
+                <p className="text-slate-500">Pronto per la macchina per maglieria.</p>
               </div>
               <button onClick={() => setView('input')} className="text-sm text-blue-600 hover:underline font-medium">
-                &larr; Back to Editor
+                &larr; Torna all'Editor
               </button>
             </div>
             <ScriptViewer script={currentScript} onSave={handleSaveToArchive} />
