@@ -51,7 +51,7 @@ export default function App() {
         <div className="max-w-5xl mx-auto px-4 h-16 flex items-center justify-between">
           <div className="flex items-center gap-2 text-blue-700">
             <Scissors className="w-6 h-6" />
-            <h1 className="text-xl font-bold tracking-tight">KnitScript Gen</h1>
+            <h1 className="text-xl font-bold tracking-tight">KnitScript</h1>
           </div>
           <nav className="flex gap-1 bg-slate-100 p-1 rounded-lg border border-slate-200">
             <button 
