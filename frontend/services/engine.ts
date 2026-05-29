@@ -79,7 +79,7 @@ export function generateBackPanel(m: Measurements, g: Gauges): PanelScript {
   // Zone B1: Armhole decreases
   if (b1_solution && (b1_solution.nA > 0 || b1_solution.nB > 0)) {
     currentRow += b1_rows;
-    const details = `${b1_solution.nA} CALI 2x2 + ${b1_solution.nB} CALI 2x4 → (${b1_rows} ranghi, -${armhole_needles} aghi/lato)`;
+    const details = `${b1_solution.nA} CALI 2x2 + ${b1_solution.nB} CALI 2x4 (Aghi rimasti: ${S_n}-${S_n})`;
     instructions.push({ action: 'Calo', details, runningTotal: `${S_n}-${S_n}`, rowCounter: currentRow });
   }
 
@@ -92,7 +92,7 @@ export function generateBackPanel(m: Measurements, g: Gauges): PanelScript {
   // Zone C: Shoulder
   if (shoulder_needles > 0) {
     currentRow += shoulder_rows;
-    const details = `${shoulder_needles} CALI 2x2 → (${shoulder_rows} ranghi, -${shoulder_needles} aghi/lato)`;
+    const details = `${shoulder_needles} CALI 2x2 (Aghi rimasti: ${C_n}-${C_n})`;
     instructions.push({ action: 'Calo', details, runningTotal: `${C_n}-${C_n}`, rowCounter: currentRow });
   }
 
@@ -139,7 +139,7 @@ export function generateFrontPanel(m: Measurements, g: Gauges): PanelScript {
   // Armhole decreases
   if (b1_solution && (b1_solution.nA > 0 || b1_solution.nB > 0)) {
     currentRow += b1_rows;
-    instructions.push({ action: 'Calo', details: `${b1_solution.nA} CALI 2x2 + ${b1_solution.nB} CALI 2x4`, runningTotal: `${S_n}-${S_n}`, rowCounter: currentRow });
+    instructions.push({ action: 'Calo', details: `${b1_solution.nA} CALI 2x2 + ${b1_solution.nB} CALI 2x4 (Aghi rimasti: ${S_n}-${S_n})`, runningTotal: `${S_n}-${S_n}`, rowCounter: currentRow });
   }
 
   // Armhole straight up to neckline start
@@ -157,7 +157,7 @@ export function generateFrontPanel(m: Measurements, g: Gauges): PanelScript {
   // Neckline decreases (happens concurrently with shoulder, simplified for linear script)
   if (neck_solution && (neck_solution.nA > 0 || neck_solution.nB > 0)) {
       currentRow += neck_dec_rows;
-      instructions.push({ action: 'Calo', details: `${neck_solution.nA} CALI 2x2 + ${neck_solution.nB} CALI 2x4 (Scollo)`, runningTotal: `${S_n - C_n}-${S_n - C_n}`, rowCounter: currentRow });
+      instructions.push({ action: 'Calo', details: `${neck_solution.nA} CALI 2x2 + ${neck_solution.nB} CALI 2x4 (Scollo) (Aghi rimasti: ${S_n - C_n}-${S_n - C_n})`, runningTotal: `${S_n - C_n}-${S_n - C_n}`, rowCounter: currentRow });
   }
 
   if (neck_straight_rows > 0) {
@@ -202,7 +202,7 @@ export function generateSleevePanel(m: Measurements, g: Gauges): PanelScript {
   // Increases
   if (z1_solution && (z1_solution.nA > 0 || z1_solution.nB > 0)) {
     currentRow += z1_rows;
-    instructions.push({ action: 'Aumento', details: `${z1_solution.nA} AUM. 1x6 + ${z1_solution.nB} AUM. 1x8`, runningTotal: `${M_n}-${M_n}`, rowCounter: currentRow });
+    instructions.push({ action: 'Aumento', details: `${z1_solution.nA} AUM. 1x6 + ${z1_solution.nB} AUM. 1x8 (Aghi rimasti: ${M_n}-${M_n})`, runningTotal: `${M_n}-${M_n}`, rowCounter: currentRow });
   }
 
   // Straight
@@ -220,7 +220,7 @@ export function generateSleevePanel(m: Measurements, g: Gauges): PanelScript {
     if (z3_solution.nB > 0) det += `+ ${z3_solution.nB} CALI 2x4 `;
     if (nA_close > 0) det += `+ ${nA_close} CALI 2x2`;
     
-    instructions.push({ action: 'Calo', details: det.trim().replace(/^\+ /, ''), runningTotal: `${testa_n}-${testa_n}`, rowCounter: currentRow });
+    instructions.push({ action: 'Calo', details: `${det.trim().replace(/^\+ /, '')} (Aghi rimasti: ${testa_n}-${testa_n})`, runningTotal: `${testa_n}-${testa_n}`, rowCounter: currentRow });
   }
 
   if (z3_waste > 0) {

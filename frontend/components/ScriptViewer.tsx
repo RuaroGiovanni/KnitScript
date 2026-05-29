@@ -9,35 +9,46 @@ interface ScriptViewerProps {
 
 export const ScriptViewer: React.FC<ScriptViewerProps> = ({ script, onSave }) => {
   
-  const renderPanel = (panel: PanelScript) => (
-    <div key={panel.name} className="mb-8 bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm">
-      <div className="bg-slate-100 px-4 py-3 border-b border-slate-200">
-        <h3 className="font-bold text-slate-800">{panel.name}</h3>
-      </div>
-      <div className="overflow-x-auto">
-        <table className="w-full text-sm text-left">
-          <thead className="text-xs text-slate-500 uppercase bg-slate-50 border-b border-slate-200">
-            <tr>
-              <th className="px-4 py-3 font-medium">Azione</th>
-              <th className="px-4 py-3 font-medium">Dettagli</th>
-              <th className="px-4 py-3 font-medium text-right">Aghi</th>
-              <th className="px-4 py-3 font-medium text-right">Colpi</th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-slate-100">
-            {panel.instructions.map((inst, idx) => (
-              <tr key={idx} className="hover:bg-slate-50/50 transition-colors">
-                <td className="px-4 py-3 font-medium text-slate-700 whitespace-nowrap">{inst.action}</td>
-                <td className="px-4 py-3 text-slate-600 font-mono text-xs">{inst.details}</td>
-                <td className="px-4 py-3 text-right font-mono font-semibold text-blue-700">{inst.runningTotal}</td>
-                <td className="px-4 py-3 text-right font-mono text-slate-500">({inst.rowCounter})</td>
+  const renderPanel = (panel: PanelScript) => {
+    const totalRows = panel.instructions.length > 0 
+      ? panel.instructions[panel.instructions.length - 1].rowCounter 
+      : 0;
+
+    return (
+      <div key={panel.name} className="mb-8 bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm">
+        <div className="bg-slate-100 px-4 py-3 border-b border-slate-200">
+          <h3 className="font-bold text-slate-800">{panel.name}</h3>
+        </div>
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm text-left">
+            <thead className="text-xs text-slate-500 uppercase bg-slate-50 border-b border-slate-200">
+              <tr>
+                <th className="px-4 py-3 font-medium">Azione</th>
+                <th className="px-4 py-3 font-medium">Dettagli</th>
+                <th className="px-4 py-3 font-medium text-right">Aghi Rimasti</th>
+                <th className="px-4 py-3 font-medium text-right">Giri Fatti</th>
+                <th className="px-4 py-3 font-medium text-right">Giri Rimasti</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody className="divide-y divide-slate-100">
+              {panel.instructions.map((inst, idx) => {
+                const remainingRows = totalRows - inst.rowCounter;
+                return (
+                  <tr key={idx} className="hover:bg-slate-50/50 transition-colors">
+                    <td className="px-4 py-3 font-medium text-slate-700 whitespace-nowrap">{inst.action}</td>
+                    <td className="px-4 py-3 text-slate-600 font-mono text-xs">{inst.details}</td>
+                    <td className="px-4 py-3 text-right font-mono font-semibold text-blue-700">{inst.runningTotal}</td>
+                    <td className="px-4 py-3 text-right font-mono text-slate-500">{inst.rowCounter}</td>
+                    <td className="px-4 py-3 text-right font-mono font-semibold text-emerald-700">{remainingRows}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
       </div>
-    </div>
-  );
+    );
+  };
 
   return (
     <div className="space-y-6">
